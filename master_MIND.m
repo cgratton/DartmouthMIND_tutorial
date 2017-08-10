@@ -86,6 +86,7 @@ figure;
 rand_roi = randperm(Parcel_params.num_rois);
 groupmat = squeeze(mean(mean(corrmat,2),1));
 imagesc(groupmat(rand_roi,rand_roi),[-0.4,1]);
+colormap('jet');
 title('Group Matrix, Random ROI order');
 colorbar;
 
@@ -97,6 +98,7 @@ colorbar;
 %   2. Discuss multi-scale nature of networks
 figure_corrmat_MIND(groupmat,Parcel_params,-0.4,1);
 title('Group Matrix, ROIs ordered by network');
+colormap('jet');
 saveas(gcf,[outdir 'Corrmat_group.tiff'],'tiff');
 close('all');
 
@@ -106,12 +108,14 @@ close('all');
 for i = 1:10 %different sessions, same subject
     figure_corrmat_MIND(squeeze(corrmat(1,i,:,:)),Parcel_params,-0.4,1);
     title(['Subject 1, session ' num2str(i)]);
+    colormap('jet');
     saveas(gcf,sprintf('%sCorrmat_MSC01_sess%02d.tiff',outdir,i),'tiff');
 end
 close('all');
 for s = 1:10 %different subjects, avg over sessions
     figure_corrmat_MIND(squeeze(mean(corrmat(s,:,:,:),2)),Parcel_params,-0.4,1);
     title(['AllSessAvg, Subject ' num2str(s)]);
+    colormap('jet');
     saveas(gcf,sprintf('%sCorrmat_MSC%02d_sessmean.tiff',outdir,s),'tiff');
 end
 close('all');
@@ -129,7 +133,7 @@ for s = 1:10
 end
 simmat = corr(corrlin');
 figure('Position',[1 1 1000 800]);
-imagesc(simmat,[0 1]);
+imagesc(simmat,[0 1]); colormap('jet');
 hline_new([10:10:90]+0.5,'k',2);
 vline_new([10:10:90]+0.5,'k',2);
 set(gca,'XTick',[5:10:95],'YTick',[5:10:95],...
