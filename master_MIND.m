@@ -244,16 +244,16 @@ close('all');
 %   1. Start with group and favorite threshold. Do other versions if time.
 t = 2;
 hub_colors = hub_colormap(pc(:,t));
-make_spring_fig_MIND(groupmat,0.02,hub_colors);
-saveas(gcf,[outdir 'Spring_Group_PC.tiff'],'tiff');
+make_spring_fig_MIND(groupmat,thresholds(t),hub_colors);
+saveas(gcf,sprintf('%sSpring_Group_PC_t%.02f.tiff',outdir,thresholds(t)),'tiff');
 
 hub_colors = hub_colormap(wd(:,t));
-make_spring_fig_MIND(groupmat,0.02,hub_colors);
-save_fig(gcf,[outdir 'Spring_Group_WD.tiff'],'tiff');
+make_spring_fig_MIND(groupmat,thresholds(t),hub_colors);
+saveas(gcf,sprintf('%sSpring_Group_WD_t%.02f.tiff',outdir,thresholds(t)),'tiff');
 
 hub_colors = hub_colormap(degree(:,t));
-make_spring_fig_MIND(groupmat,0.02,hub_colors);
-save_fig(gcf,[outdir 'Spring_Group_degree.tiff'],'tiff');
+make_spring_fig_MIND(groupmat,thresholds(t),hub_colors);
+saveas(gcf,sprintf('%sSpring_Group_degree_t%.02f.tiff',outdir,thresholds(t)),'tiff');
 
 
 % And for work on hubs and their importance in brain function, in addition to the references above, see:
