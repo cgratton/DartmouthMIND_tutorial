@@ -218,7 +218,7 @@ infomapcomm = load([datadir 'Allsubavg_333parcels_infomapassn.mat']);
 %   Complex Metabolic Networks. Nature, 433, 895-900
 %   http://www.nature.com/nature/journal/v433/n7028/full/nature03288.html?foxtrotcallback=true
 %   Look at article end
-[pc, wd, degree] = module_metrics_Dartmouth(groupmat,infomapcomm.clrs(:,t),0.02,Parcel_params.dist_thresh,Parcel_params.dmat);
+[pc, wd, degree] = module_metrics_Dartmouth(groupmat,infomapcomm.clrs(:,1),0.02,Parcel_params.dist_thresh,Parcel_params.dmat);
 
 % Now do this across thresholds
 %   0. Plot image of hub measures across thresholds with network boundaries

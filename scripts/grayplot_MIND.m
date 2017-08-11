@@ -81,11 +81,11 @@ axis(h(1)); hold on;
 h3=plot([1:numpts],FD*FDmult,'r');
 hold off;
 %plot([1:numpts],ones(1,numpts).*FDthresh.*FDmult,'k');
-hline(FDthresh.*FDmult,'k');
-hline(0,'k');
-set(h(1),'children',[a(1) h3]);
-set(h(1),'YaxisLocation','left','box','off');
-set(h(2),'xaxislocation','top','xticklabel','');
+refline([FDthresh.*FDmult, 0],'k');
+refline([0, 0],'k');
+%set(h(1),'children',[a(1) h3]);
+%set(h(1),'YaxisLocation','left','box','off');
+%set(h(2),'xaxislocation','top','xticklabel','');
 
 % next plot gray matter signal, masking if requested
 subplot(9,1,5:8);
