@@ -112,7 +112,7 @@ function [mvm ddt_mvm FD] = compute_FD(mvm_orig)
 % done in this case]
 % radius = 50;
 % mvm(:,1:3) = mvm_orig(:,1:3); % translation params stay the same
-% mvm(:,4:6) =mvm_orig(:,4:6).*(2*radius*pi/360); % rotation params converted
+% mvm(:,4:6) =mvm_orig(:,4:6).*(2*radius*pi/360); % rotation params converted (calculating arc segment length)
 mvm = mvm_orig;
 
 % take original movement parameters, demean and detrend
