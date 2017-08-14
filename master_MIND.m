@@ -28,9 +28,12 @@ addpath(scriptdir);
 % GrayplotInfo structure
 %for now only provided for MSC01, since files can be large.
 % See MSC openfMRI dataset for data from additional subjects
-load([datadir 'MSC01_grayplot_data']);
+load([datadir 'MSC01_grayplot_data.mat']);
 
-% Go over how to calculate FD, DVars, and GS [CG: have them do this]
+% Go over how to calculate FD, DVars, and GS on session 1
+% FD: average absolute displacement from frame to frame
+% DVARS: root mean sq difference in voxelwise signal from frame to frame
+% GS: average signal across all gray matter voxels
 
 % make grayplots for single session, different stages of processing.
 % Discuss consequences of each stage of processing for signal.
@@ -210,6 +213,14 @@ thresholds = [0.01:0.01:0.10];
 %   [In the interest of time/ease, I am pre-computing network assignments
 %   and providing them here]
 infomapcomm = load([datadir 'Allsubavg_333parcels_infomapassn.mat']);
+% code for plotting infomap output:
+% colors = distinguishable_colors(max(unique(infomapcomm.clrs)));
+% colors(1,:) = [1 1 1];
+% figure;
+% imagesc(infomapcomm.clrs(Parcel_params.sorti,:),[1 max(unique(infomapcomm.clrs))]);
+% hline_new(Parcel_params.transitions,'k',2);
+% title('Assignments across thresholds');
+% colormap(colors);
 
 % Compute hub measures - degree, PC, and WD - at one threshold in one
 % subject
