@@ -48,9 +48,17 @@ end
 
 % Discuss other finer points:
 %   1. How to quantitatively check for motion contamination - QC-FC
-%   measures
+%   measures:
+%       % Hi vs. Low FD group differences
+%       % Correlation between FD and FC (QC-FC)
+%       % Distance dependence of FD-FC correlations
 %   2. Relatedly, how to set FD threshold
-%   3. Other issues: respiration artifact in movement parameters
+%       % by eye, based on grayplots
+%       % comparison (hi vs. low motion groups) between motion censoring
+%       and random censoring
+%   3. Other issues: 
+%       % we also require: 3-5 contiguous frames, 50 frame minimum per run, 120 frames minimum per person
+%       %respiration artifact in movement parameters
 
 % Relevant references:
 % For more insight into what this sort of approach tells you, read:
