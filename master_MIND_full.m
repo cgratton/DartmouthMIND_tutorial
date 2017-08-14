@@ -228,19 +228,22 @@ infomapcomm = load([datadir 'Allsubavg_333parcels_infomapassn.mat']);
 
 % Compute hub measures - degree, PC, and WD - at one threshold in one
 % subject
-%   1. [CG: Have them do code for these measures, given formula]
-%   See formula from Guimera & Amaral (2005). Functional Cartography of
-%   Complex Metabolic Networks. Nature, 433, 895-900
-%   http://www.nature.com/nature/journal/v433/n7028/full/nature03288.html?foxtrotcallback=true
-%   Look at article end
+%   1. Look at formula, practice computing measures at one thershold in group
+%       degree = total number of edges to a node
+%       PC = 1 - for all mods (the # of edges of node to mod m/total # of edges of node)
+%       WD = z-score normalized measure of degree within an network
+%       See formula from Guimera & Amaral (2005). Functional Cartography of
+%       Complex Metabolic Networks. Nature, 433, 895-900
+%       http://www.nature.com/nature/journal/v433/n7028/full/nature03288.html?foxtrotcallback=true
+%       Look at article end for formulas
+%   2. Discuss thresholding, distance exclusion
 [pc, wd, degree] = module_metrics_Dartmouth(groupmat,infomapcomm.clrs(:,1),0.02,Parcel_params.dist_thresh,Parcel_params.dmat);
 
 % Now do this across thresholds
 %   0. Plot image of hub measures across thresholds with network boundaries
 %   1. Discuss how they change across thresholds
 %   2. Discuss how they change across networks
-%   3. If we have Workbench, plot onto brain?
-%   4. Discuss potential issues with each measure
+%   3. Discuss potential issues with each measure
 for t = 1:length(thresholds)
     [pc(:,t), wd(:,t), degree(:,t)] = module_metrics_Dartmouth(groupmat,infomapcomm.clrs(:,t),thresholds(t),Parcel_params.dist_thresh,Parcel_params.dmat);
 end
@@ -279,6 +282,17 @@ saveas(gcf,sprintf('%sSpring_Group_degree_t%.02f.tiff',outdir,thresholds(t)),'ti
 %   Gratton, C., et al., (2012). Focal brain lesions to critical locations cause widespread disruption of the modular organization of the brain. Journal of Cognitive Neuroscience, 24 (6), 1275-1285
 %   Power, J.D. et al. (2013). Evidence for hubs in human functional brain networks. Neuron, 79 (4), 798-813
 %   Warren, D.E., et al. (2014). Network measures predict neuropsychological outcome after brain injury. PNAS, 111 (39), 14247-14252
+%
+% For a general intro on using graph theory in brain networks see: 
+%   Bullmore & Sporns (2009). Complex brain networks: graph theoretical
+%       analysis of structural and functional systems. Nature Reviews
+%       Neuroscience 10(3), 186.
+%   Sporns (2010). Networks of the brain
+% For extensions of many graph metrics to weighted networks see also:
+%   Rubinov & Sporns, 2011. Weight-conserving characterization of
+%       complex functional brain networks. Neuroimage, 56(4) 2068-2079.
+%   Rubinov & Sporns, 2010. Complex network measures of brain
+%       connectivity: uses and interpretations, 52(3) 1059-1069
 %
 % The following packages contain tools for graph theoretical analyses:
 %   Brain Connectivity Toolbox (Sporns, Matlab/Python/C++): https://sites.google.com/site/bctnet/
