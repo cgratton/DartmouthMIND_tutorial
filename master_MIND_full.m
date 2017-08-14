@@ -85,13 +85,23 @@ for s = 1:10
 end
 
 % compute correlations among TS ROIs, masking out bad frames
-
+for s = 1:10
+    for i = 1:10
+        corrmat(s,i,:,:) = atanh(corr(ROIdata(s).parcel_time{i}(logical(ROIdata(s).tmask_all{i}),:)));
+    end
+end
 
 % plot a few examples of said correlations - order ROIs randomly
-
+figure;
+rand_roi = randperm(Parcel_params.num_rois);
+groupmat = squeeze(mean(mean(corrmat,2),1));
+imagesc(groupmat(rand_roi,rand_roi),[-0.4,1]);
+colormap('jet');
+title('Group Matrix, Random ROI order');
+colorbar;
 
 % plot correlations in network order for the group
-%   1. Discuss community detection methods (Infomap, modularity
+%   1. Discuss/do community detection methods (Infomap, modularity
 %   optimization)
 %   2. Discuss multi-scale nature of networks
 figure_corrmat_MIND(groupmat,Parcel_params,-0.4,1);
@@ -119,6 +129,29 @@ end
 close('all');
 
 % Make similarity matrices
+maskmat = ones(Parcel_params.num_rois);
+maskmat = logical(triu(maskmat,1));
+count = 1;
+for s = 1:10
+    for i = 1:10
+        tmp = corrmat(s,i,:,:);
+        corrlin(count,:) = tmp(maskmat);
+        count = count+1;
+    end
+end
+simmat = corr(corrlin');
+figure('Position',[1 1 1000 800]);
+imagesc(simmat,[0 1]); colormap('jet');
+hline_new([10:10:90]+0.5,'k',2);
+vline_new([10:10:90]+0.5,'k',2);
+set(gca,'XTick',[5:10:95],'YTick',[5:10:95],...
+    'XTickLabel',{'MSC01','MSC02','MSC03','MSC04','MSC05','MSC06','MSC07','MSC08','MSC09','MSC10'},...
+    'YTickLabel',{'MSC01','MSC02','MSC03','MSC04','MSC05','MSC06','MSC07','MSC08','MSC09','MSC10'});
+axis square;
+colorbar;
+title('Correlation Matrix Similarity');
+saveas(gcf,[outdir 'SimilarityMat_rest.tiff'],'tiff');
+close('all');
 
 % Talk about doing these measures with individual ROIs
 
@@ -152,8 +185,10 @@ make_spring_fig_MIND(groupmat,0.02,colors,Parcel_params.networks,Parcel_params.c
 %   1. Discuss consequences of different thresholds
 thresholds = [0.01:0.01:0.04]; %[0.01:0.01:0.1,0.2,0.3]; %these take a while, esp for higher thresholds. Only do a few.
 for t = 1:length(thresholds)
+    %tic;
     make_spring_fig_MIND(groupmat,thresholds(t),colors,Parcel_params.networks,Parcel_params.colors);
     saveas(gcf,sprintf('%sSpring_group_t%.02f.tiff',outdir,thresholds(t)),'tiff');
+    %toc
 end
 close all;
 
