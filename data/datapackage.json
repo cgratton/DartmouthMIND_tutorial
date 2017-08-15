@@ -1,0 +1,18 @@
+{
+  "name": "MSC_MIND2017",
+  "title": "Midnight Scan Club data for Dartmouth MIND 2017",
+  "description": "A subset of the Midnight Scan Club (MSC) dataset, formatted 
+                 for functional connectivity tutorial at the Dartmouth MIND
+                 summer school, 2017. The full dataset is available at openfMRI
+                 (https://openfmri.org/dataset/ds000224/). This dataset accompanies tutorial by
+                 C. Gratton, available through github
+                 (https://github.com/cgratton/DartmouthMIND_tutorial.git)."
+  "datapackage_version": "3",
+  "author":  ["Caterina Gratton"],
+  "licenses": [{
+    "name": "ODC-PDDL-1.0",
+    "path": "http://opendatacommons.org/licenses/pddl/",
+    "title": "Open Data Commons Public Domain Dedication and License v1.0"
+   }
+  ]
+}
