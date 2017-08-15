@@ -6,7 +6,7 @@
                  summer school, 2017. The full dataset is available at openfMRI
                  (https://openfmri.org/dataset/ds000224/). This dataset accompanies tutorial by
                  C. Gratton, available through github
-                 (https://github.com/cgratton/DartmouthMIND_tutorial.git)."
+                 (https://github.com/cgratton/DartmouthMIND_tutorial.git).",
   "datapackage_version": "3",
   "author":  ["Caterina Gratton"],
   "licenses": [{
