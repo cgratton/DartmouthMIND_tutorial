@@ -78,14 +78,10 @@ set(a(1),'color',[0 0 1]);
 set(h(2),'xlim',[0 numpts],'ycolor',[0 0 0],'xlim',[0 numel(DVars)],'ylim',rylimz,'ytick',rightsignallim);
 set(a(2),'color',[0 .5 0]);
 axis(h(1)); hold on;
-h3=plot([1:numpts],FD*FDmult,'r');
+plot([1:numpts],FD*FDmult,'r');
+hline_new(FDthresh.*FDmult,'k',1);
+%h4=refline([FDthresh.*FDmult, 0],'k');
 hold off;
-%plot([1:numpts],ones(1,numpts).*FDthresh.*FDmult,'k');
-refline([FDthresh.*FDmult, 0],'k');
-refline([0, 0],'k');
-%set(h(1),'children',[a(1) h3]);
-%set(h(1),'YaxisLocation','left','box','off');
-%set(h(2),'xaxislocation','top','xticklabel','');
 
 % next plot gray matter signal, masking if requested
 subplot(9,1,5:8);
