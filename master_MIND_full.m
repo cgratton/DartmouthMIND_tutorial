@@ -218,13 +218,15 @@ thresholds = [0.01:0.01:0.10];
 %   and providing them here]
 infomapcomm = load([datadir 'Allsubavg_333parcels_infomapassn.mat']);
 % code for plotting infomap output:
-% colors = distinguishable_colors(max(unique(infomapcomm.clrs)));
-% colors(1,:) = [1 1 1];
-% figure;
-% imagesc(infomapcomm.clrs(Parcel_params.sorti,:),[1 max(unique(infomapcomm.clrs))]);
-% hline_new(Parcel_params.transitions,'k',2);
-% title('Assignments across thresholds');
-% colormap(colors);
+colors = distinguishable_colors(max(unique(infomapcomm.clrs)));
+colors(1,:) = [1 1 1];
+figure;
+imagesc(infomapcomm.clrs(Parcel_params.sorti,:),[1 max(unique(infomapcomm.clrs))]);
+hline_new(Parcel_params.transitions,'k',2);
+set(gca,'YTick',Parcel_params.centers,'YTickLabels',Parcel_params.networks);
+set(gca,'XTick',1:10,'XTickLabels',thresholds);
+title('Assignments across thresholds');
+colormap(colors);
 
 % Compute hub measures - degree, PC, and WD - at one threshold in one
 % subject
